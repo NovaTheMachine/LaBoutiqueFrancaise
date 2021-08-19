@@ -42,7 +42,7 @@ class RegisterType extends AbstractType
                         'label' => 'Mot de passe',
                         'attr'=>['placeholder'=>'Saisissez votre mot de passe']],
                         'second_options' => [
-                            'label' => 'Mot de passe',
+                            'label' => 'Confirmez votre mot de passe',
                             'attr'=>['placeholder'=>'Confirmez votre mot de passe']]])
                         
 
