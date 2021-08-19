@@ -23,12 +23,14 @@ class RegisterType extends AbstractType
                 'attr'=>['placeholder'=>'Saisissez votre prénom']])
             ->add('lastname',TextType::class,
                 ['label'=> 'Nom',
+                'constraints' => [new Length( ['min'=> 2 ,'max'=> 20 ] ) ],
                 'attr'=>['placeholder'=>'Saisissez votre nom']])
             ->add('email',EmailType::class,
                 ['label'=> 'E-mail',
                 'attr'=>['placeholder'=>'Saisissez votre adresse mail']])
             ->add('password',PasswordType::class,
                 ['label'=> 'Mot de passe',
+                'constraints' => [new Length( ['min'=> 2 ,'max'=> 20 ] ) ],
                 'attr'=>['placeholder'=>'Creez votre mot de passe']])
             ->add('passwordConfirm',PasswordType::class,
                 ['label'=> 'Confirmez',
