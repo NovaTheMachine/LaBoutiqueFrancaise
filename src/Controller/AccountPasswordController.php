@@ -30,7 +30,9 @@ class AccountPasswordController extends AbstractController
      * @Route("/compte/modifier-mon-mot-de-passe", name="account_password")
      */
     public function index(Request $request,UserPasswordHasherInterface $encoder): Response
-    {   $user = $this->getUser();
+    {   
+        $notification = null;
+        $user = $this->getUser();
         $form = $this-> createForm(ChangePasswordType::class,$user);
         $form ->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
@@ -41,10 +43,14 @@ class AccountPasswordController extends AbstractController
                 $password = $encoder->hashPassword($user, $new_pwd);
                 $user->setPassword($password);
                 $this->entityManager->flush();
+                $notification="Votre mot de passe a bien ete mis a jour.";
 
             }
         }
 
-        return $this->render('account_controlleur/password.html.twig',['form'=>$form->createView()]);
+        return $this->render('account_controlleur/password.html.twig',
+            ['form'=>$form->createView(),
+            'notification'=> $notification
+        ]);
     }
 }
