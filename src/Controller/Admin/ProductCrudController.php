@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductCrudController extends AbstractCrudController
@@ -23,10 +24,11 @@ class ProductCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            ImageField::new('illustration'),
+            ImageField::new('illustration')
+            ->setUploadDir('public/images'),
             TextField::new('subtitle'),
             TextareaField::new('description'),
-            MoneyField::new('price'),
+            MoneyField::new('price')->setCurrency('EUR'),
             CollectionField::new('category')
 
         ]; 
